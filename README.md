@@ -1,4 +1,4 @@
-# MiniParking - Automated access parking management system
+# Mini Parking - Automated access parking management system
 Mini Parking is a prototype of an automated parking management system developed for the Computer System Design course. The project simulates a small-scale parking lot with automated access control, vehicle detection, ID input, and fee calculation based on parking duration. The system is implemented using the **STM32F303VC** microcontroller.
 
 ## Objective
