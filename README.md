@@ -1,5 +1,7 @@
 # Mini Parking - Automated access parking management system
+![Banner](https://github.com/user-attachments/assets/5545bc88-2054-41aa-b3de-bf197e49a8e1)
 Mini Parking is a prototype of an automated parking management system developed for the Computer System Design course. The project simulates a small-scale parking lot with automated access control, vehicle detection, ID input, and fee calculation based on parking duration. The system is implemented using the **STM32F303VC** microcontroller.
+
 
 ## Objective
 To develop a model of a parking system with the following features:
@@ -31,6 +33,30 @@ To develop a model of a parking system with the following features:
   - The user confirms payment by pressing a push button on the board. This action triggers the servomotor to raise the exit barrier.
 - **Gate Closure Logic:** After each gate opening (entry or exit), the servomotor automatically closes the barrier. Closure occurs only when the ultrasonic sensor confirms that the area in front of the gate is clear of obstacles for a short time.
 
+# Code overview
+This section briefly outlines the organization and behavior of the `main.c` file.
+- **Constants & Macros:** Defines key system limits such as maximum code length (`MAX_CODE_LENGTH`), log size (`MAX_LOG_ENTRIES`), debounce delay, I²C timeout, and distance threshold for vehicle detection.
+- **Data Structures:**
+  - A date struct captures RTC-based timestamp components (seconds, minutes, hours, day, month, year).
+  - LogEntry holds each vehicle’s code, entry/exit timestamps, date structs, and a usage flag.
+- **Peripheral Initialization:** Uses HAL libraries to configure GPIO, I²C, SPI, UART, USB, and multiple timers (`TIM1`, `TIM2`, `TIM3`, `TIM4`, `TIM15`). Timer-driven interrupts handle PWM signals for the servo and ultrasonic sensor timing.
+## Program Flow
+1. **LCD Initialization:** Displays project name and initial pricing plan (`$0.10/HR`, might be more expensive than downtown Milan).
+2. **Main Loop:** Remains idle; all core activity is interrupt-driven.
+## Interrupt & Handler Logic
+- **Ultrasonic Sensor** (`TIM4`)**:** Measures echo pulse width to compute distance. If below threshold (e.g., < 20 cm), triggers gate opening (via servo PWM) and starts a closure timer (`TIM15`).
+- **PIR Sensor:** Toggles LEDs on motion detection and deactivates them after a fixed interval.
+- **Keypad Input:**
+  - Scanning 4x4 keypad matrix with debouncing.
+  - `'*'` confirms and submits a vehicle ID; `'#'` deletes the last character.
+- **RTC via I²C:** Reads real-time clock, converts BCD data to integers, forms `date` structs, and timestamps.
+- **Log Management:**
+  - **Entry:** If the code is new, a new `LogEntry` is created.
+  - **Exit:** If the code exists, the exit timestamp is recorded, parking duration is calculated, and the fee is displayed on both UART and LCD.
+- **Payment Confirmation:** A push button on the STM32 board simulates payment: when pressed, it opens the exit gate and starts the timer for automatic gate closure.
+## Utility Functions
+- `get_current_timestamp()`, `date_to_seconds()`, `date_diff_sec()`, and `calc_parking_fee()` handle conversion of timestamps and fee calculation.
+- Leap-year logic ensures accurate date-to-seconds conversion.
 
 
 
