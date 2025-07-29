@@ -18,7 +18,7 @@ To develop a model of a parking system with the following features:
 - LCD 16x2 Display  
 - **DS3231** RTC Module  
 - Push Button (on-board) 
-- LEDs and resistors. They are bundled together using heat-shrink tubing for compact and secure wiring. These resistors are not included in the integration schematic (see `integration.png`) to keep the diagram clean and focused on the core system logic.
+- LEDs and resistors. They are bundled together using heat-shrink tubing for compact and secure wiring. These resistors are not included in the integration schematic (see `Integration.png`) to keep the diagram clean and focused on the core system logic.
 
 
 ## Functionality
