@@ -39,7 +39,7 @@ This section briefly outlines the organization and behavior of the `main.c` file
 - **Data Structures:**
   - A date struct captures RTC-based timestamp components (seconds, minutes, hours, day, month, year).
   - LogEntry holds each vehicle’s code, entry/exit timestamps, date structs, and a usage flag.
-- **Peripheral Initialization:** Uses HAL libraries to configure GPIO, I²C, SPI, UART, USB, and multiple timers (`TIM1`, `TIM2`, `TIM3`, `TIM4`, `TIM15`). Timer-driven interrupts handle PWM signals for the servo and ultrasonic sensor timing.
+- **Peripheral Initialization:** Uses HAL libraries to configure GPIO, I²C, UART and multiple timers (`TIM1`, `TIM2`, `TIM3`, `TIM4`, `TIM15`). Timer-driven interrupts handle PWM signals for the servo and ultrasonic sensor timing.
 ## Program Flow
 1. **LCD Initialization:** Displays project name and initial pricing plan (`$0.10/HR`, might be more expensive than downtown Milan).
 2. **Main Loop:** Remains idle; all core activity is interrupt-driven.
