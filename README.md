@@ -9,7 +9,19 @@ To develop a model of a parking system with the following features:
 - Real-time display of entry and exit data
 - Calculation of parking fees based on time spent
 
-## System Components and Functionality
+## Hardware Components
+- **STM32F303VC** microcontroller  
+- **SG90** Servo Motor  
+- **HC-SR04** Ultrasonic Sensor  
+- **HC-SR501** PIR Motion Sensor  
+- Membrane Keypad **DS-16038**  
+- LCD 16x2 Display  
+- **DS3231** RTC Module  
+- Push Button (on-board) 
+- LEDs and resistors. They are bundled together using heat-shrink tubing for compact and secure wiring. These resistors are not included in the integration schematic (see `integration.png`) to keep the diagram clean and focused on the core system logic.
+
+
+## Functionality
 - **Entry Gate Automation:** A **SG90** servomotor controls the barrier arm. It opens automatically when an approaching vehicle is detected by an **HC-SR04** ultrasonic sensor within a predefined distance.
 - **LED Lighting System:** Two LEDs are turned on/off using a **HC-SR501** PIR motion sensor. The LEDs are activated upon motion detection and turn off automatically 6 seconds after no further movement is detected.
 - **Vehicle Identification and Entry Logging:** A Membrane Switch Keypad (**DS-16038**) allows users to input a vehicle ID upon entry. This data is stored and shown on a 16x2 LCD display, along with the current date and time obtained via an RTC module (**DS3231**).
