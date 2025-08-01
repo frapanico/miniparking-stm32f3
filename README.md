@@ -57,6 +57,8 @@ This section briefly outlines the organization and behavior of the `main.c` file
 ## Utility Functions
 - `get_current_timestamp()`, `date_to_seconds()`, `date_diff_sec()`, and `calc_parking_fee()` handle conversion of timestamps and fee calculation.
 - Leap-year logic ensures accurate date-to-seconds conversion.
+## Video demostration
+A video demonstration of the system in operation is available in the main repository folder. The file, named `MP.mp4`, includes on-screen text descriptions in Italian to explain the system's functionality and key features.
 ## Accessing the code
 If you are a recruiter or a developer interested in viewing the source code, please open an issue in this repository with your request. I will provide access after reviewing it.
 
