@@ -42,7 +42,7 @@ This section briefly outlines the organization and behavior of the `main.c` file
 - **Peripheral Initialization:** Uses HAL libraries to configure GPIO, I²C, UART and multiple timers (`TIM1`, `TIM2`, `TIM3`, `TIM4`, `TIM15`). Timer-driven interrupts handle PWM signals for the servo and ultrasonic sensor timing.
 ## Program Flow
 1. **LCD Initialization:** Displays project name and initial pricing plan (`$0.10/HR`, might be more expensive than downtown Milan).
-2. **Main Loop:** Remains idle; all core activity is interrupt-driven.
+2. **Main Loop:** Remains idle; all core activity is interrupt-driven. This design is perhaps unconventional, but it proved to be an excellent teaching tool for the course.
 ## Interrupt & Handler Logic
 - **Ultrasonic Sensor** (`TIM4`)**:** Measures echo pulse width to compute distance. If below threshold (e.g., < 20 cm), triggers gate opening (via servo PWM) and starts a closure timer (`TIM15`).
 - **PIR Sensor:** Toggles LEDs on motion detection and deactivates them after a fixed interval.
